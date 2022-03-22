@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.adilmx.com/soap"
+	xmlns:tns="http://www.adilmx.com/soap">
+	<!-- create object account(id[attribute:long] , sold[element:double] , dateCreation[element:date]) -->
+	<xs:complexType name="account">
+		<xs:sequence>
+			<xs:element name="sold" type="xs:double" />
+			<xs:element name="dateCreation" type="xs:date" />
+			<xs:element name="activated" type="xs:boolean" />
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:long" />
+	</xs:complexType>
+	<!-- create GetAccount method's Inputs(id) and Outputs(account)-->
+	<xs:element name="GetAccountRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:long" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetAccountResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="account" type="tns:account" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- create ListAccount method's Inputs(void) and Outputs(accounts)-->
+	<xs:element name="ListAccountRequest">
+		<xs:complexType>
+			<xs:sequence>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ListAccountResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="accounts" maxOccurs="unbounded" type="tns:account" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
